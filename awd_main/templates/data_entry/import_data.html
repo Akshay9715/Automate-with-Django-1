@@ -21,20 +21,30 @@
                             
                             <div class="mb-4">
                                 <label for="file_path" class="form-label">Upload File</label>
-                                <input type="file" class="form-control" id="file_path" required>
+                                <input type="file" class="form-control" name="file_path" id="file_path" required>
                             </div>
                             
                             <div class="mb-4">
+
                                 <label for="model_name" class="form-label">Select Database Table</label>
                                 <select name="model_name" class="form-select" id="model_name" required>
                                     <option value="None" disabled selected>Select a Table</option>
-                                    <option value="demo_model">Demo Model</option>
+                                    {% for models in all_models %}
+                                    <option value="{{models}}">{{models}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg">Import Data</button>
                             </div>
+                            {% if messages %}
+                            <dev class="messages m-2">
+                                {% for message in messages %}
+                                <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
