@@ -16,6 +16,7 @@ def import_data(request):
     all_models = all_custom_models()
     context = {
             'all_models' : all_models,
+            'MEDIA_URL': settings.MEDIA_URL,
     }
     if request.method == 'POST':
        file_path = request.FILES.get('file_path')
